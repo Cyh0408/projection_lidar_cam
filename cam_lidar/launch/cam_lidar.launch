@@ -1,0 +1,18 @@
+<launch>
+    <arg name="color_distance" default="1.2" />
+    <arg name="show_colored_cloud" default="true" />
+    <!-- <arg name="save_data" default="false" /> -->
+    
+    <node pkg="cam_lidar" type="cam_lidar" name="cam_lidar" output="screen">
+        <param name="camera_topic" type="str" value="/camera/color/image_raw" />
+        <param name="lidar_topic" type="str" value="/points_raw" />
+        <param name="calib_file_path" type="str" value="$(find cam_lidar)/config" />
+        <param name="file_name" type="str" value="calib_result.yaml" />
+        <param name="color_distance" type="double" value="$(arg color_distance)" />
+        <param name="show_colored_cloud" type="bool" value="$(arg show_colored_cloud)" />
+        <!-- <param name="save_data" type="bool" value="$(arg save_data)" /> -->
+    </node>
+
+    <node pkg="rviz" name="rviz" type="rviz"  args="-d $(find cam_lidar)/rviz/rviz.rviz"> -->
+    </node>
+</launch>
